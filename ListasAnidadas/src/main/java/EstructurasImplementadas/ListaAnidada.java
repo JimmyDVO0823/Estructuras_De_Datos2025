@@ -9,5 +9,33 @@ package EstructurasImplementadas;
  * @author LENOVO LOQ
  */
 public class ListaAnidada {
+    Nodo cabeza;
+    
+    static class Nodo{
+        int data;
+        Nodo next;
+        
+        Nodo(int data){
+            this.data = data;
+            next = null;
+        }
+    }
+    
+    public void aniadirFinal(Nodo ultimo){
+        Nodo n = cabeza;
+        
+        if(n == null){
+        cabeza = ultimo;
+        }
+        else{
+            while(n.next != null){
+                n = n.next;
+            }
+            n.next = ultimo;
+        }
+        
+        
+    }
+    
     
 }
