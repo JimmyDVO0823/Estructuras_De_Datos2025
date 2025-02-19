@@ -20,31 +20,49 @@ public class LinkedList {
             this.data = data;
             next = null;
         }
+
+        @Override
+        public boolean equals(Object obj) {
+            return super.equals(obj); 
+        }
+        
+        
     }
     
     public void aniadirFinal(Nodo ultimo){
         
-        aniadirVacio(ultimo);
-        if (tial != null){
-            tial.next = ultimo;
-            tial = ultimo;
+        if(tial == null){
+        head = ultimo;
+        tial = ultimo;
+        return;
         }
+        
+        tial.next = ultimo;
+        tial = ultimo;
+        
     }
     
     public void aniadirInicio(Nodo primero){
-        aniadirVacio(primero);
-        if (tial != null){
-            primero.next = head;
-            head = primero;
+        if(tial == null){
+        head = primero;
+        tial = primero;
+        return;
         }
+
+        primero.next = head;
+        head = primero;
+        
     }
     
     public void aniadirEnPosicion(int posicion, Nodo nuevo){
         Nodo nodoActual = head;
         Nodo nodoSiguienteActual;
         
-        
-        aniadirVacio(nuevo);
+        if(tial == null){
+            head = nuevo;
+            tial = nuevo;
+            return;
+        }
         for (int i = 0; i <= posicion; i++) {
             if(i == posicion-1){
                 nodoSiguienteActual = nodoActual.next;
@@ -64,23 +82,17 @@ public class LinkedList {
     public void eliminarFinal(){
         Nodo nodoActual = head;
         boolean continuarBucle = true;
-        if(tial != null){
-            while(continuarBucle){
-                if(nodoActual.next.next == null){
-                    tial = nodoActual.next;
-                    continuarBucle = false;
-                }
+
+        if(tial == null) return;
+        while(continuarBucle){
+            if(nodoActual.next.next == null){
+                tial = nodoActual.next;
+                continuarBucle = false;
             }
         }
     }
     
-    
-    
-    public void aniadirVacio(Nodo nuevoNodo){
-        if(tial == null){
-        head = nuevoNodo;
-        tial = nuevoNodo;
-        }
+    public void buscarElemento(){
+        
     }
-    
 }
