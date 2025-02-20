@@ -11,6 +11,13 @@ package EstructurasImplementadas;
 public class LinkedList {
     Nodo head;
     Nodo tial;
+
+    public LinkedList(int elemento) {
+        Nodo nodo = new Nodo(elemento);
+        head = nodo;
+        tial = nodo;
+    }
+    
     
     static class Nodo{
         int data;
@@ -29,45 +36,52 @@ public class LinkedList {
         
     }
     
-    public void aniadirFinal(Nodo ultimo){
+    public void aniadirFinal(int ultimo){
+        
+        Nodo ultimoNodo = new Nodo(ultimo);
         
         if(tial == null){
-        head = ultimo;
-        tial = ultimo;
+        head = ultimoNodo;
+        tial = ultimoNodo;
         return;
         }
         
-        tial.next = ultimo;
-        tial = ultimo;
+        tial.next = ultimoNodo;
+        tial = ultimoNodo;
         
     }
     
-    public void aniadirInicio(Nodo primero){
+    public void aniadirInicio(int primero){
+        
+        Nodo primeroNodo = new Nodo(primero);
+        
         if(tial == null){
-        head = primero;
-        tial = primero;
+        head = primeroNodo;
+        tial = primeroNodo;
         return;
         }
 
-        primero.next = head;
-        head = primero;
+        primeroNodo.next = head;
+        head = primeroNodo;
         
     }
     
-    public void aniadirEnPosicion(int posicion, Nodo nuevo){
+    public void aniadirEnPosicion(int posicion, int nuevo){
         Nodo nodoActual = head;
         Nodo nodoSiguienteActual;
+        Nodo nuevoNodo = new Nodo(nuevo);
         
         if(tial == null){
-            head = nuevo;
-            tial = nuevo;
+            head = nuevoNodo;
+            tial = nuevoNodo;
             return;
         }
+        
         for (int i = 0; i <= posicion; i++) {
             if(i == posicion-1){
                 nodoSiguienteActual = nodoActual.next;
-                nuevo.next = nodoSiguienteActual;
-                nodoActual.next = nuevo;
+                nuevoNodo.next = nodoSiguienteActual;
+                nodoActual.next = nuevoNodo;
             }
             
             nodoActual = nodoActual.next;
@@ -92,7 +106,13 @@ public class LinkedList {
         }
     }
     
-    public void buscarElemento(){
-        
+    public void imprimirLista(){
+        Nodo nodoActual = head;
+        boolean continuar = nodoActual != null ;
+        while(continuar){
+            System.out.println(nodoActual.data);
+            nodoActual = nodoActual.next;
+            continuar = nodoActual != null;
+        }
     }
 }
