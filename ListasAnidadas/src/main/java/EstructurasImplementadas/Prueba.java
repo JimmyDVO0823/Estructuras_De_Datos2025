@@ -11,8 +11,15 @@ package EstructurasImplementadas;
 public class Prueba {
     public static void main(String[] args) {
         LinkedList list = new LinkedList(1.0);
-        list.aniadirFinal(1.5);
-        list.aniadirInicio(2.0);
+        list.aniadirFinal(2.0);
+        list.aniadirFinal(3.0);
+        list.aniadirFinal(5.0);
+        list.aniadirEnPosicion(3, 4.0);
+        list.removeData(5.0);
+        list.imprimirLista();
+        System.out.println(list.contains(9.0));
+        System.out.println(list.lenght());
+        list.updateData(1.0, 10.0);
         list.imprimirLista();
         list.makeVoid();
         list.imprimirLista();
