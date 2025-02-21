@@ -9,7 +9,7 @@ package EstructurasImplementadas;
  * @author LENOVO LOQ
  */
 public class LinkedList<T> { // <-- Añade el parámetro genérico T
-
+    int size;
     Nodo<T> head;
     Nodo<T> tail; // Corregí el nombre de "tial" a "tail"
 
@@ -17,9 +17,11 @@ public class LinkedList<T> { // <-- Añade el parámetro genérico T
         Nodo<T> nodo = new Nodo<>(elemento);
         head = nodo;
         tail = nodo;
+        size = 1;
     }
 
     public LinkedList() {
+        size = 0;
     } // Constructor vacío
 
     static class Nodo<T> { // Clase Nodo genérica
@@ -31,11 +33,6 @@ public class LinkedList<T> { // <-- Añade el parámetro genérico T
             this.data = data;
             next = null;
         }
-
-        @Override
-        public boolean equals(Object obj) {
-            return super.equals(obj);
-        }
     }
 
     public void aniadirFinal(T ultimo) {
@@ -46,9 +43,9 @@ public class LinkedList<T> { // <-- Añade el parámetro genérico T
             tail = ultimoNodo;
             return;
         }
-
         tail.next = ultimoNodo;
         tail = ultimoNodo;
+        size++;
     }
 
     public void aniadirInicio(T primero) {
@@ -62,9 +59,11 @@ public class LinkedList<T> { // <-- Añade el parámetro genérico T
 
         primeroNodo.next = head;
         head = primeroNodo;
+        size++;
     }
 
     public void aniadirEnPosicion(int posicion, T nuevo) {
+        size++;
         Nodo<T> nodoActual = head;
         Nodo<T> nuevoNodo = new Nodo<>(nuevo);
 
@@ -98,9 +97,7 @@ public class LinkedList<T> { // <-- Añade el parámetro genérico T
     public void eliminarInicio() {
         if (head != null) {
             head = head.next;
-            if (head == null) {
-                tail = null;
-            }
+            size--;
         }
     }
 
@@ -108,6 +105,7 @@ public class LinkedList<T> { // <-- Añade el parámetro genérico T
         if (head == null) {
             return;
         }
+        size--;
 
         if (head == tail) {
             head = null;
@@ -135,6 +133,9 @@ public class LinkedList<T> { // <-- Añade el parámetro genérico T
         Nodo<T> currentNode = head;
         Nodo<T> previousNode = null;
 
+        if(currentNode == null) return;
+        
+        size--;
         if (head.data.equals(data)) {
             head = head.next;
             return;
@@ -168,23 +169,11 @@ public class LinkedList<T> { // <-- Añade el parámetro genérico T
         return contains;
     }
 
-    public int lenght() {
-        Nodo<T> nodoActual = head;
-        int lenght = 0;
-
-        while (nodoActual != null) {
-            nodoActual = nodoActual.next;
-            lenght++;
-        }
-
-        return lenght;
-    }
-
     public void updateData(T old, T now) {
         Nodo<T> nodoActual = head;
-        
+
         while (nodoActual != null) {
-            if(nodoActual.data.equals(old)){
+            if (nodoActual.data.equals(old)) {
                 nodoActual.data = now;
                 break;
             }

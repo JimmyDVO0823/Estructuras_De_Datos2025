@@ -18,7 +18,6 @@ public class Prueba {
         list.removeData(5.0);
         list.imprimirLista();
         System.out.println(list.contains(9.0));
-        System.out.println(list.size);
         list.updateData(1.0, 10.0);
         list.imprimirLista();
         list.makeVoid();
