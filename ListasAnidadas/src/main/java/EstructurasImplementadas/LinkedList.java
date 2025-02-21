@@ -8,22 +8,23 @@ package EstructurasImplementadas;
  *
  * @author LENOVO LOQ
  */
-public class LinkedList {
-    Nodo head;
-    Nodo tial;
+public class LinkedList<T> { // <-- Añade el parámetro genérico T
+    Nodo<T> head;
+    Nodo<T> tail; // Corregí el nombre de "tial" a "tail"
 
-    public LinkedList(int elemento) {
-        Nodo nodo = new Nodo(elemento);
+    public LinkedList(T elemento) {
+        Nodo<T> nodo = new Nodo<>(elemento);
         head = nodo;
-        tial = nodo;
+        tail = nodo;
     }
     
+    public LinkedList() {} // Constructor vacío
     
-    static class Nodo{
-        int data;
-        Nodo next;
+    static class Nodo<T> { // Clase Nodo genérica
+        T data; // Tipo genérico para el dato
+        Nodo<T> next;
         
-        Nodo(int data){
+        Nodo(T data) {
             this.data = data;
             next = null;
         }
@@ -32,87 +33,99 @@ public class LinkedList {
         public boolean equals(Object obj) {
             return super.equals(obj); 
         }
-        
-        
     }
     
-    public void aniadirFinal(int ultimo){
+    public void aniadirFinal(T ultimo) {
+        Nodo<T> ultimoNodo = new Nodo<>(ultimo);
         
-        Nodo ultimoNodo = new Nodo(ultimo);
-        
-        if(tial == null){
-        head = ultimoNodo;
-        tial = ultimoNodo;
-        return;
+        if (tail == null) {
+            head = ultimoNodo;
+            tail = ultimoNodo;
+            return;
         }
         
-        tial.next = ultimoNodo;
-        tial = ultimoNodo;
-        
+        tail.next = ultimoNodo;
+        tail = ultimoNodo;
     }
     
-    public void aniadirInicio(int primero){
+    public void aniadirInicio(T primero) {
+        Nodo<T> primeroNodo = new Nodo<>(primero);
         
-        Nodo primeroNodo = new Nodo(primero);
-        
-        if(tial == null){
-        head = primeroNodo;
-        tial = primeroNodo;
-        return;
+        if (tail == null) {
+            head = primeroNodo;
+            tail = primeroNodo;
+            return;
         }
 
         primeroNodo.next = head;
         head = primeroNodo;
-        
     }
     
-    public void aniadirEnPosicion(int posicion, int nuevo){
-        Nodo nodoActual = head;
-        Nodo nodoSiguienteActual;
-        Nodo nuevoNodo = new Nodo(nuevo);
+    public void aniadirEnPosicion(int posicion, T nuevo) {
+        Nodo<T> nodoActual = head;
+        Nodo<T> nuevoNodo = new Nodo<>(nuevo);
         
-        if(tial == null){
+        if (tail == null) {
             head = nuevoNodo;
-            tial = nuevoNodo;
+            tail = nuevoNodo;
             return;
         }
         
-        for (int i = 0; i <= posicion; i++) {
-            if(i == posicion-1){
-                nodoSiguienteActual = nodoActual.next;
-                nuevoNodo.next = nodoSiguienteActual;
-                nodoActual.next = nuevoNodo;
-            }
-            
+        if (posicion == 0) {
+            aniadirInicio(nuevo);
+            return;
+        }
+        
+        for (int i = 0; i < posicion - 1; i++) {
+            if (nodoActual == null) return; // Evita NullPointerException
             nodoActual = nodoActual.next;
         }
         
-    }
-    
-    public void eliminarInicio(){
-        if(head != null) head = head.next;
-    }
-    
-    public void eliminarFinal(){
-        Nodo nodoActual = head;
-        boolean continuarBucle = true;
-
-        if(tial == null) return;
-        while(continuarBucle){
-            if(nodoActual.next.next == null){
-                tial = nodoActual.next;
-                continuarBucle = false;
+        if (nodoActual != null) {
+            nuevoNodo.next = nodoActual.next;
+            nodoActual.next = nuevoNodo;
+            if (nuevoNodo.next == null) {
+                tail = nuevoNodo;
             }
         }
     }
     
-    public void imprimirLista(){
-        Nodo nodoActual = head;
-        boolean continuar = nodoActual != null ;
-        while(continuar){
-            System.out.println(nodoActual.data);
-            nodoActual = nodoActual.next;
-            continuar = nodoActual != null;
+    public void eliminarInicio() {
+        if (head != null) {
+            head = head.next;
+            if (head == null) {
+                tail = null;
+            }
         }
+    }
+    
+    public void eliminarFinal() {
+        if (head == null) return;
+        
+        if (head == tail) {
+            head = null;
+            tail = null;
+            return;
+        }
+        
+        Nodo<T> nodoActual = head;
+        while (nodoActual.next != tail) {
+            nodoActual = nodoActual.next;
+        }
+        nodoActual.next = null;
+        tail = nodoActual;
+    }
+    
+    public void imprimirLista() {
+        Nodo<T> nodoActual = head;
+        while (nodoActual != null) {
+            System.out.println(nodoActual.data.toString());
+            nodoActual = nodoActual.next;
+        }
+    }
+    
+    public void makeVoid(){
+        head = null;
+        tail = null;
     }
 }

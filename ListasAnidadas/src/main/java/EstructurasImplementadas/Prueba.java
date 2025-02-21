@@ -10,9 +10,11 @@ package EstructurasImplementadas;
  */
 public class Prueba {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList(2);
-        list.aniadirFinal(3);
-        list.aniadirInicio(1);
+        LinkedList list = new LinkedList(1.0);
+        list.aniadirFinal(1.5);
+        list.aniadirInicio(2.0);
+        list.imprimirLista();
+        list.makeVoid();
         list.imprimirLista();
     }
 }
