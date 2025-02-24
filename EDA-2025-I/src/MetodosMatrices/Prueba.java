@@ -4,6 +4,7 @@
  */
 package MetodosMatrices;
 
+import MetodosMatrices.NumeroDuplicado.*;
 import MetodosMatrices.NumeroFaltante.*;
 
 /**
@@ -22,5 +23,10 @@ public class Prueba {
     numeros[25] = 0;
     
     System.out.println(NumeroFaltante.numeroFaltante(numeros));
-    }
+    
+    int[] numeroDuplicado = {2,4,7,8,21,4,67,423,3,6357,3,4,4,5,6,7,8,1};
+    System.out.println(NumeroDuplicado.numeroDuplicado(numeroDuplicado));
+    
+        System.out.println(MayorMenor.encontrarMaxMin(numeroDuplicado)[0] + " " + MayorMenor.encontrarMaxMin(numeroDuplicado)[1]);
+    }   
 }
