@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package MetodosMatrices;
+package Taller1MetodosMatrices;
 
-import MetodosMatrices.NumeroDuplicado.*;
-import MetodosMatrices.NumeroFaltante.*;
-import MetodosMatrices.RemoverDuplicados.*;
+import Taller1MetodosMatrices.NumeroDuplicado.*;
+import Taller1MetodosMatrices.NumeroFaltante.*;
+import Taller1MetodosMatrices.RemoverDuplicados.*;
 
 /**
  *
