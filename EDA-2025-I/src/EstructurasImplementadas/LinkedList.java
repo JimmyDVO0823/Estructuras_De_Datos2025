@@ -4,17 +4,27 @@
  */
 package EstructurasImplementadas;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  *
  * @author LENOVO LOQ
  */
 public class LinkedList<T> { // <-- Añade el parámetro genérico T
-    int size;
-    Nodo<T> head;
-    Nodo<T> tail; // Corregí el nombre de "tial" a "tail"
+
+    private int size;
+    private Nodo<T> head;
+    private Nodo<T> tail; // Corregí el nombre de "tial" a "tail"
 
     public LinkedList(T elemento) {
         Nodo<T> nodo = new Nodo<>(elemento);
+        head = nodo;
+        tail = nodo;
+        size = 1;
+    }
+
+    public LinkedList(Nodo nodo) {
         head = nodo;
         tail = nodo;
         size = 1;
@@ -32,6 +42,41 @@ public class LinkedList<T> { // <-- Añade el parámetro genérico T
         Nodo(T data) {
             this.data = data;
             next = null;
+        }
+    }
+
+    public Iterator<T> iterator() {
+        return new IteradorLinkedList();
+    }
+
+    // Clase interna para el Iterator
+    private class IteradorLinkedList implements Iterator<T> {
+
+        private Nodo<T> actual = head;
+
+        @Override
+        public boolean hasNext() {
+            return actual != null;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("No hay más elementos");
+            }
+            T dato = actual.data;
+            actual = actual.next;
+            return dato;
+        }
+    }
+
+    public void addAll(LinkedList list) {
+        Nodo currentNode = list.head;
+        if (list.head != null) {
+            while (currentNode != null) {
+                this.aniadirFinal((T) currentNode.data);
+                currentNode = currentNode.next;
+            }
         }
     }
 
@@ -133,8 +178,10 @@ public class LinkedList<T> { // <-- Añade el parámetro genérico T
         Nodo<T> currentNode = head;
         Nodo<T> previousNode = null;
 
-        if(currentNode == null) return;
-        
+        if (currentNode == null) {
+            return;
+        }
+
         size--;
         if (head.data.equals(data)) {
             head = head.next;
@@ -185,6 +232,32 @@ public class LinkedList<T> { // <-- Añade el parámetro genérico T
         head = null;
         tail = null;
     }
+
+    //GETTERS Y SETTERS
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public Nodo<T> getHead() {
+        return head;
+    }
+
+    public void setHead(Nodo<T> head) {
+        this.head = head;
+    }
+
+    public Nodo<T> getTail() {
+        return tail;
+    }
+
+    public void setTail(Nodo<T> tail) {
+        this.tail = tail;
+    }
+
 }
 
 /*

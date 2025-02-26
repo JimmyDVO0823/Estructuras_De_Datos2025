@@ -16,7 +16,7 @@ public class Prueba {
         list.aniadirFinal(5.0);
         list.aniadirEnPosicion(3, 4.0);
         list.removeData(5.0);
-        System.out.println(list.size);
+        System.out.println(list.getSize());
         list.imprimirLista();
         System.out.println(list.contains(9.0));
         list.updateData(1.0, 10.0);
