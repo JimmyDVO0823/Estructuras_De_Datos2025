@@ -46,5 +46,26 @@ public final class LinkedListMethods {
 
     public static boolean LEXICORD(LinkedList L1, LinkedList L2) {
         //completar este método
+        boolean mayor = false;
+        Iterator<Integer> iterador1 = L1.iterator();
+        Iterator<Integer> iterador2 = L2.iterator();
+        
+        System.out.println("imprimiendo elementos");
+        
+        while(iterador1.hasNext() || iterador2.hasNext()){
+            Integer elemento1 = iterador1.hasNext() ? iterador1.next(): null;
+            Integer elemento2 = iterador2.hasNext() ? iterador2.next(): null;
+            System.out.println("elemento 1: " + elemento1);
+            System.out.println("elemento 2: " + elemento2);
+            if(elemento1 == null && elemento2 == null) break;
+            if(elemento1 != null && elemento2 == null || elemento1 > elemento2) {
+                mayor = true;
+                break;
+            }
+            if(Objects.equals(elemento1, elemento2)) continue;
+            else break;
+        }
+        System.out.println("fin de la impresion");
+        return mayor;
     }
 }

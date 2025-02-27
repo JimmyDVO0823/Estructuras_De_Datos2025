@@ -26,10 +26,10 @@ public class Pruebas {
         lista1.aniadirFinal(5);
         
         LinkedList<Integer> lista2 = new LinkedList<>(1);
-        lista1.aniadirFinal(2);
-        lista1.aniadirFinal(3);
-        lista1.aniadirFinal(4);
-        lista1.aniadirFinal(5);
+        lista.aniadirFinal(2);
+        lista.aniadirFinal(3);
+        lista.aniadirFinal(4);
+        lista.aniadirFinal(5);
         
         
         
