@@ -4,7 +4,7 @@
  */
 package Taller2LinlkedList;
 
-import EstructurasImplementadas.LinkedList;
+import LinkedList.LinkedList;
 import java.util.Iterator;
 import java.util.Objects;
 

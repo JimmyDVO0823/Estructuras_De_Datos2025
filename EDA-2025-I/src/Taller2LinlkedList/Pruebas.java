@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Taller2LinlkedList;
-import EstructurasImplementadas.LinkedList;
+import LinkedList.LinkedList;
 import Taller2LinlkedList.LinkedListMethods;
 
 /**
