@@ -4,7 +4,7 @@
  */
 package Taller1_Parcial;
 
-import LinkedList.LinkedList;
+import EstructurasImplementadas.LinkedList;
 
 /**
  *
