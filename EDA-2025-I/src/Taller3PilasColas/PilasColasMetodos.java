@@ -51,17 +51,12 @@ public final class PilasColasMetodos {
         }
     }
 
-    public void reorganizarPila(Pila<Integer> pila, int numero) {
+    public static void reorganizarPila(Pila<Integer> pila, int numero) {
         Pila<Integer> pilaAuxiliar = new Pila();
-        boolean seEncuentra = false;
 
         while (pila.getTope() != null) {
-            if (pila.peek() != numero) {
-                pilaAuxiliar.push(pila.pop());
-            } else {
-                seEncuentra = true;
-                pila.pop();
-            }
+            if (pila.peek() == numero)pila.pop();
+            else pilaAuxiliar.push(pila.pop());
         }
 
         while (pilaAuxiliar.getTope() != null) {
@@ -71,8 +66,18 @@ public final class PilasColasMetodos {
         pila.push(numero);
     }
 
-    public void reorganizarCola(Cola<Integer> cola, int numero) {
+    public static void reorganizarCola(Cola<Integer> cola, int numero) {
+        Cola<Integer> colaAuxiliar = new Cola<>();
         
+        while(!cola.isEmpty()){
+            if(cola.peek() == numero) cola.dequeue();
+            else colaAuxiliar.enqueue(cola.dequeue());
+        }
+        
+        cola.enqueue(numero);
+        while(!colaAuxiliar.isEmpty()){
+            cola.enqueue(colaAuxiliar.dequeue());
+        }
     }
 
 }

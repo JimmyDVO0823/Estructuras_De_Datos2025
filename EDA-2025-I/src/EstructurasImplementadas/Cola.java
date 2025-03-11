@@ -4,12 +4,16 @@
  */
 package EstructurasImplementadas;
 
+import java.util.NoSuchElementException;
+
 /**
  *
  * @author LENOVO LOQ
  */
 public class Cola<T> {
+
     private static class Nodo<T> {
+
         T dato;
         Nodo<T> siguiente;
 
@@ -33,60 +37,80 @@ public class Cola<T> {
         public void setSiguiente(Nodo<T> siguiente) {
             this.siguiente = siguiente;
         }
-        
-        
-        
+
     }
-    
+
     Nodo<T> tail;
     Nodo<T> head;
+
+    public Cola() {
+    }
+
+    public Cola(T tail) {
+        Nodo<T> nodo = new Nodo(tail);
+        this.tail = nodo;
+        head = nodo;
+    }
     
-    public T peek(){
+    
+
+    public T peek() {
+        if (isEmpty()) {
+            return null;
+        }
         T data = getHead().getDato();
         return data;
     }
-    
-    public void empezar(T element){
+
+    public void empezar(T element) {
         tail = new Nodo<>(element);
         head = tail;
     }
-    
-    public void enqueue(T element){
-        if(isEmpty()) empezar(element);
-        else{
+
+    public void enqueue(T element) {
+        if (isEmpty()) {
+            empezar(element);
+        } else {
             Nodo<T> nodo = new Nodo<>(element);
-            nodo.setSiguiente(tail);
+            tail.setSiguiente(nodo);
             tail = nodo;
         }
     }
+
+    public T dequeue() {
+    if (isEmpty()) {
+        throw new NoSuchElementException("La cola está vacía");
+    }
+    T dataReturn = head.getDato();
+    head = head.getSiguiente();
     
-    public T dequeue(){
-        T dataReturn = head.getDato();
-        head = head.getSiguiente();
-        return dataReturn;
+    // Actualizar tail si la cola queda vacía
+    if (head == null) {
+        tail = null;
     }
     
-    
-    public boolean isEmpty(){
-        return tail == null;
+    return dataReturn;
+}
+
+    public boolean isEmpty() {
+        return head == null;
     }
-    
-    public void printQueue(){
+
+    public void printQueue() {
         Cola<T> colaAuxiliar = new Cola();
-        
-        while(peek() != null){
+
+        while (getHead() != null) {
             System.out.println(peek());
             colaAuxiliar.enqueue(this.dequeue());
         }
-        
-        while(colaAuxiliar.peek() != null){
-            this.enqueue(colaAuxiliar.dequeue());
-        }
-        
-    }
-    
-    //GETTERS SETTERS
 
+        while (colaAuxiliar.getHead() != null) {
+            enqueue(colaAuxiliar.dequeue());
+        }
+
+    }
+
+    //GETTERS SETTERS
     public Nodo<T> getTail() {
         return tail;
     }
@@ -102,5 +126,5 @@ public class Cola<T> {
     public void setHead(Nodo<T> head) {
         this.head = head;
     }
-    
+
 }

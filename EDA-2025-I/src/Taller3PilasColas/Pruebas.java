@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Taller3PilasColas;
+import EstructurasImplementadas.Cola;
 import EstructurasImplementadas.Pila;
 import Taller3PilasColas.PilasColasMetodos;
 
@@ -23,9 +24,26 @@ public class Pruebas {
         pila.push(1);
         pila.push(10);
         
-        //PilasColasMetodos.reemplazar(pila, 1, 999);
-        PilasColasMetodos.menorAlFondo(pila);
+        Cola<Integer> cola = new Cola<>(10);
+        cola.enqueue(9);
+        cola.enqueue(8);
+        cola.enqueue(7);
+        cola.enqueue(6);
+        cola.enqueue(5);
+        cola.enqueue(4);
+        cola.enqueue(3);
+        cola.enqueue(2);
+        cola.enqueue(1);
         
+        //PilasColasMetodos.reemplazar(pila, 1, 999);
+        //PilasColasMetodos.menorAlFondo(pila);   
+        //PilasColasMetodos.reorganizarPila(pila, 1);
+        PilasColasMetodos.reorganizarCola(cola, 3);
+        
+        System.out.println("COLA");
+        cola.printQueue();
+        
+        System.out.println("PILA");
         pila.printStack();
     }
 }
