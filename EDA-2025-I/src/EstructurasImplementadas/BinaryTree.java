@@ -4,12 +4,10 @@
  */
 package EstructurasImplementadas;
 
-import java.util.List;
-
 /**
  * @author LENOVO LOQ
  */
-public class BinaryThree<T extends Number & Comparable<T>> {
+public class BinaryTree<T extends Number & Comparable<T>> {
 
     private Node<T> root;
     private int size;
@@ -27,6 +25,12 @@ public class BinaryThree<T extends Number & Comparable<T>> {
         public Node() {
         }
     }
+
+    //CONSTRUCTORES
+
+    public BinaryTree() {
+    }
+
 
     // Inserta un data en el árbol
     // Retorna true si fue insertado (no existía), false si ya existía
