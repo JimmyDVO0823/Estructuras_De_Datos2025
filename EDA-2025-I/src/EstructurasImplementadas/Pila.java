@@ -53,7 +53,7 @@ public class Pila<T> {
         tope = nuevo;
     }
     
-    // Método para eliminar y retornar el elemento en la cima de la pila.
+    // Método para delete y retornar el elemento en la cima de la pila.
     public T pop() {
         if (isEmpty()) {
             throw new RuntimeException("La pila está vacía");
